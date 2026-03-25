@@ -2,6 +2,13 @@
 const { Pool } = require("pg");
 require("dotenv").config(); // Load environment variables
 
+// Debug: Check if DATABASE_URL is set
+if (!process.env.DATABASE_URL) {
+  console.error("❌ CRITICAL: DATABASE_URL environment variable is NOT set!");
+  console.error("   Make sure to add DATABASE_URL in Vercel Environment Variables");
+  process.exit(1);
+}
+
 // Create a connection pool to PostgreSQL
 // This allows us to reuse connections efficiently
 // Using DATABASE_URL for simpler configuration (recommended)
