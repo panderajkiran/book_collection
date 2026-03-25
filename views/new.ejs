@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Book - My Book Notes</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    <!-- Include header template -->
+    <%- include('header') %>
+
+    <!-- Main Content Container -->
+    <main class="container">
+        <!-- Page Title -->
+        <section class="page-header">
+            <h2>📖 Add a New Book</h2>
+            <p>Share a book that impacted you</p>
+        </section>
+
+        <!-- Add Book Form -->
+        <section class="form-container">
+            <form method="POST" action="/add" class="book-form" id="addBookForm">
+                
+                <!-- Book Title -->
+                <div class="form-group">
+                    <label for="title" class="form-label">Book Title <span class="required">*</span></label>
+                    <input 
+                        type="text" 
+                        id="title" 
+                        name="title" 
+                        class="form-input" 
+                        placeholder="e.g., The Midnight Library"
+                        required
+                    >
+                </div>
+
+                <!-- Author -->
+                <div class="form-group">
+                    <label for="author" class="form-label">Author <span class="required">*</span></label>
+                    <input 
+                        type="text" 
+                        id="author" 
+                        name="author" 
+                        class="form-input" 
+                        placeholder="e.g., Matt Haig"
+                        required
+                    >
+                </div>
+
+                <!-- ISBN -->
+                <div class="form-group">
+                    <label for="isbn" class="form-label">ISBN (Optional)</label>
+                    <input 
+                        type="text" 
+                        id="isbn" 
+                        name="isbn" 
+                        class="form-input" 
+                        placeholder="e.g., 978-0-857-52555-5"
+                    >
+                </div>
+
+                <!-- Date Read -->
+                <div class="form-group">
+                    <label for="dateRead" class="form-label">Date Read <span class="required">*</span></label>
+                    <input 
+                        type="date" 
+                        id="dateRead" 
+                        name="dateRead" 
+                        class="form-input"
+                        required
+                    >
+                </div>
+
+                <!-- Rating -->
+                <div class="form-group">
+                    <label for="rating" class="form-label">Rating <span class="required">*</span></label>
+                    <div class="rating-input">
+                        <% for (let i = 1; i <= 5; i++) { %>
+                            <label class="radio-label">
+                                <input type="radio" name="rating" value="<%= i %>" required>
+                                <span class="stars">
+                                    <% for (let j = 1; j <= i; j++) { %>
+                                        ★
+                                    <% } %>
+                                </span>
+                            </label>
+                        <% } %>
+                    </div>
+                </div>
+
+                <!-- Review -->
+                <div class="form-group">
+                    <label for="review" class="form-label">Your Review (Optional)</label>
+                    <textarea 
+                        id="review" 
+                        name="review" 
+                        class="form-textarea" 
+                        placeholder="What did you think about this book? Share your thoughts..."
+                        rows="5"
+                    ></textarea>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-large">
+                        ✅ Save Book
+                    </button>
+                    <a href="/" class="btn btn-secondary btn-large">
+                        ← Cancel
+                    </a>
+                </div>
+            </form>
+        </section>
+
+        <!-- Helpful Hints -->
+        <section class="hints">
+            <h3>💡 Tips:</h3>
+            <ul>
+                <li>Required fields are marked with an asterisk (*)</li>
+                <li>Your rating should reflect your personal opinion (1-5 stars)</li>
+                <li>Reviews can be as short or as long as you want</li>
+                <li>All information can be edited later</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 My Book Notes. Keep reading, keep learning! 📚</p>
+    </footer>
+
+    <!-- Basic form validation -->
+    <script>
+        document.getElementById('addBookForm').addEventListener('submit', function(e) {
+            const dateRead = document.getElementById('dateRead').value;
+            if (!dateRead) {
+                e.preventDefault();
+                alert('Please select a date when you read this book');
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>
