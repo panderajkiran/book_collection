@@ -5,14 +5,10 @@
 const { Client } = require("pg");
 require("dotenv").config(); // Load environment variables
 
-// Database connection details
+// Database connection details using DATABASE_URL
 const client = new Client({
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  database: process.env.DB_NAME,
-  ssl: { rejectUnauthorized: false } // Required for Neon
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }, // Required for Neon
 });
 
 // SQL to create the books table

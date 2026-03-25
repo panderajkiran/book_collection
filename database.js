@@ -4,13 +4,10 @@ require("dotenv").config(); // Load environment variables
 
 // Create a connection pool to PostgreSQL
 // This allows us to reuse connections efficiently
+// Using DATABASE_URL for simpler configuration (recommended)
 const pool = new Pool({
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  database: process.env.DB_NAME,
-  ssl: { rejectUnauthorized: false } // Required for cloud databases like Neon
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }, // Required for cloud databases like Neon
 });
 
 // Test the connection
