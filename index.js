@@ -19,8 +19,8 @@ console.log("---");
 app.set("view engine", "ejs");
 app.set("views", require("path").join(__dirname, "views")); // Set correct views directory
 
-// Serve static files (CSS, JS, Images) from the "public" folder
-app.use(express.static("public"));
+// Serve static files (CSS, JS, Images) from the "public" folder with explicit path
+app.use(express.static(require("path").join(__dirname, "public")));
 
 // Parse form data from POST requests
 app.use(bodyParser.urlencoded({ extended: true }));
