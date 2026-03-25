@@ -5,7 +5,7 @@ const pool = require('./database');
 
 // Initialize Express application
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // ===== MIDDLEWARE SETUP =====
 // Set EJS as the view engine (for rendering HTML templates)
@@ -141,6 +141,6 @@ app.use((req, res) => {
 
 // ===== START SERVER =====
 app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📖 Book Notes App is ready!`);
 });
