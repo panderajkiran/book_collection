@@ -17,6 +17,7 @@ console.log("---");
 // ===== MIDDLEWARE SETUP =====
 // Set EJS as the view engine (for rendering HTML templates)
 app.set("view engine", "ejs");
+app.set("views", require("path").join(__dirname, "views")); // Set correct views directory
 
 // Serve static files (CSS, JS, Images) from the "public" folder
 app.use(express.static("public"));
